@@ -6,7 +6,7 @@ import Movie from "./components/Movie";
 import Poetry from "./components/Poetry";
 export default {
   name: 'App',
-  components: {Poetry}
+  components: {Poetry,Movie}
 }
 
 utools.onPluginEnter(({code, type, payload}) => {
