@@ -9,7 +9,7 @@
   "features": [
     {
       "code": "main",
-      "explain": "一个方便的工作工具箱",
+      "explain": "诗词",
       "cmds":["dianying","电影","诗词","shici"]
     },
     {
