@@ -20,9 +20,12 @@ utools.onPluginEnter(({code, type, payload}) => {
     state.content = ""
   }
 })
-
-
-
+utools.onPluginReady(() => {
+  console.log('插件装配完成，已准备好')
+})
+utools.onPluginOut(() => {
+  console.log('用户退出插件')
+})
 </script>
 
 <style>

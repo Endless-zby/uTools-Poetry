@@ -32,7 +32,7 @@ function errorState (response) {
 
   } else if (response.toString().endsWith('429') || response.toString().endsWith('514')) {
     // 频繁刷新
-    response.errorInfo = '频繁刷新'
+    response.errorInfo = '刷慢点'
   }else {
     console.log(response)
     alert('数据获取错误')
@@ -50,7 +50,7 @@ function successState (res) {
 }
 
 // 封装axios--------------------------------------------------------------------------------------
-function apiAxios (method, url, params) {
+function apiAxios (method, url, params, accessToken) {
   let httpDefault = {
     method: method,
     baseURL: baseURL,
@@ -59,11 +59,13 @@ function apiAxios (method, url, params) {
     // `data` 是作为请求主体被发送的数据
     params: method === 'GET' || method === 'DELETE' ? params : null,
     data: method === 'POST' || method === 'PUT' ? qs.stringify(params) : null,
+    headers: accessToken !== '' ? {"X-User-Token":accessToken} : null,
     timeout: 10000
   }
 
   // 注意**Promise**使用(Promise首字母大写)
   return new Promise((resolve, reject) => {
+    console.log(httpDefault)
     axios(httpDefault)
       // 此处的.then属于axios
       .then((res) => {
@@ -80,9 +82,9 @@ function apiAxios (method, url, params) {
 // Vue.js的插件应当有一个公开方法 install。这个方法的第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象。
 export default {
   install: function (Vue) {
-    Vue.prototype.getAxios = (url, params) => apiAxios('GET', url, params)
-    Vue.prototype.postAxios = (url, params) => apiAxios('POST', url, params)
-    Vue.prototype.putAxios = (url, params) => apiAxios('PUT', url, params)
-    Vue.prototype.delectAxios = (url, params) => apiAxios('DELECT', url, params)
+    Vue.prototype.getAxios = (url, params, accessToken) => apiAxios('GET', url, params, accessToken)
+    Vue.prototype.postAxios = (url, params, accessToken) => apiAxios('POST', url, params, accessToken)
+    Vue.prototype.putAxios = (url, params, accessToken) => apiAxios('PUT', url, params, accessToken)
+    Vue.prototype.delectAxios = (url, params, accessToken) => apiAxios('DELECT', url, params, accessToken)
   }
 }
