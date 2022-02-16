@@ -20,8 +20,6 @@
   </div>
 </template>
 <script>
-  var redisDb = require('../api/redis');
-
 export default {
   data() {
     return {
@@ -50,14 +48,6 @@ export default {
   },
   created() {
     this.getOnePoetry()
-    redisDb.set('0', 'sssss', 'ddddd',1000, function (err, result) {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(result)
-        //设置成功
-      }
-    })
   },
   methods: {
     getOnePoetry() {
