@@ -10,21 +10,7 @@
     {
       "code": "main",
       "explain": "诗词",
-      "cmds":["dianying","电影","诗词","shici"]
-    },
-    {
-      "code": "copy",
-      "explain": "复制文件预览及编辑",
-      "cmds": [
-        {
-          "type": "files",
-          "label": "markdown 文件预览",
-          "fileType": "file",
-          "match": "/\\.md$/i",
-          "minLength": 1,
-          "maxLength": 1
-        }
-      ]
+      "cmds":["诗词","shici"]
     }
   ]
 }
